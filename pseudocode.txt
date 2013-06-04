@@ -1,10 +1,39 @@
 Begin main
-	Get users desired action
-	If user wants to log in
-		Login()
-	If user wants to create account
-		CreateAccount()
+	LoadData()
+	If user is not logged in
+		Get users desired action
+		If user wants to log in
+			Login()
+		If user wants to create account
+			CreateAccount()
+	If user is logged in
+		If user is a customer
+			Get users desired action
+			If user wants to browse DVDs
+				DVDlist()
+			If user wants to view/update data
+				UpdateData()
+			If user wants to return a DVD
+				ReturnDVD()
+		If user is admin
+			Get users desired action
+			If user wants to browse DVDs
+				DVDlist()
+			If user wants to add a DVD
+				DVDadd()
+			If user wants to delete a DVD
+				DVDdelete()
+			If user wants to browse users
+				userlist()
+			If user wants to add a user
+				useradd()
+			If user wants to delete a user
+				userdelete()
+		
 End main
+
+
+
 
 Begin Login
 	If usernames.txt created = true
@@ -48,3 +77,19 @@ Begin Login
 	If usernames.txt created = false
 		return "Sorry, there are no users. Please create an account"
 End Login
+
+
+
+
+
+
+Begin LoadData
+	If userdata.txt exists = true
+		linecount = 0
+		While EOF = false
+			linecount = linecount + 1
+			load data into userdata(linecount) //userdata() will be an array of records, each line will be one
+	If userdata.txt exists = false			   //cell of the array and will be comma delimited for each field
+		create userdata.txt			   //of the record
+End LoadData
+
