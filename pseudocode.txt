@@ -1,0 +1,50 @@
+Begin main
+	Get users desired action
+	If user wants to log in
+		Login()
+	If user wants to create account
+		CreateAccount()
+End main
+
+Begin Login
+	If usernames.txt created = true
+		passmatch = false
+		namematch = false
+		get username
+		linecount = 0
+		While (match = false) AND (EOF userdata.txt = false)
+			linecount = linecount + 1
+			read line of userdata.txt into tempname
+			If username = tempname
+				namematch = true
+		End while
+	
+		Get password    //this is run even if an incorrect username is entered, so
+				//that it is unknown if the username or passord is incorrect
+
+
+		//This section will generate the md5 hash of the password and compare it to the password database.
+		//This means that the raw passwords will not be stored on the computer.
+		If namematch = true
+			password = password + username  //the username is a distinct salt for the md5 encryption
+			passhash = MD5Print(MD5String(password))  //this generates an md5 hash
+			If passwords.txt exists = true
+				read line number linecount into temppass
+				If passhash = temppass
+					passmatch = true
+			If passwords.txt exists = false
+				return "Sorry, there seems to be an error with the password database. Please contact an administrator for assistance."
+				//this would seem to be a fairly fatal error, I don't think the program could easily recover from this.
+				//I'll try to figure something out.
+				
+		
+
+		If (namematch = true) AND (passmatch = true)
+			Load the user data from line (linecount) of userdata.txt
+		If (namematch = false) OR (passmatch = false)
+			Return "Sorry, the username or password is incorrect."
+
+
+	If usernames.txt created = false
+		return "Sorry, there are no users. Please create an account"
+End Login
