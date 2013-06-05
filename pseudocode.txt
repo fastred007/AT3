@@ -1,5 +1,12 @@
 Begin main
 	LoadData()
+	Menu()
+End main
+
+
+
+
+Begin Menu()
 	If user is not logged in
 		Get users desired action
 		If user wants to log in
@@ -15,6 +22,8 @@ Begin main
 				UpdateData()
 			If user wants to return a DVD
 				ReturnDVD()
+			If user wants to exit
+				exit()
 		If user is admin
 			Get users desired action
 			If user wants to browse DVDs
@@ -29,8 +38,10 @@ Begin main
 				useradd()
 			If user wants to delete a user
 				userdelete()
+			If user wants to exit
+				exit()
 		
-End main
+End Menu
 
 
 
@@ -120,7 +131,11 @@ Begin CreateUser()
 End CreateUser
 	
 
+Begin Exit()
+	
 
+
+End Exit
 
 
 
