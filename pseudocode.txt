@@ -93,3 +93,59 @@ Begin LoadData
 		create userdata.txt			   //of the record
 End LoadData
 
+
+
+
+
+Begin CreateUser()
+	tempuser = username
+	temppass = user's desired password
+	tempname = User's name
+	templicense = User's license number
+	tempphone = user's phone number
+	tempaddress = user's address
+	If usernames.txt exists = false
+		create usernames.txt
+	count = 0
+	while not EOF usernames.txt
+		count = count + 1
+	linecount = count + 1
+	add tempuser to (linecount) line of usernames.txt
+	temppass = temppass + tempuser  //the username is a distinct salt for the md5 encryption
+	passhash = MD5Print(MD5String(password))  //this generates an md5 hash
+	If passwords.txt exists = false
+		create passwords.txt
+	add passhash to (linecount) line of passwords.txt
+	load user data into userdata(linecount)
+End CreateUser
+	
+
+
+
+
+
+
+
+
+	writestring = tempuser + "`" + tempname + "`" + templicense  + "`" + tempphone
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
