@@ -99,9 +99,9 @@ Begin LoadData
 		linecount = 0
 		While EOF = false
 			linecount = linecount + 1
-			load data into userdata(linecount) //userdata() will be an array of records, each line will be one
-	If userdata.txt exists = false			   //cell of the array and will be comma delimited for each field
-		create userdata.txt			   //of the record
+			load data into userdata(linecount) //userdata() will be a2 dimensional array, the firstwill be one
+	If userdata.txt exists = false			   //index of the array and will be the users and the each field
+		create userdata.txt			   //second will access different user data parts
 End LoadData
 
 
@@ -129,22 +129,20 @@ Begin CreateUser()
 	add passhash to (linecount) line of passwords.txt
 	load user data into userdata(linecount)
 End CreateUser
-	
+
+
+
 
 Begin Exit()
-	
+	For count = 1 to number of users
+		write userdata(count) to line of userdata.txt  //needs to be comma delimited for each recor	
 
-
+	Exit
 End Exit
 
-
-
-
-
-
-	writestring = tempuser + "`" + tempname + "`" + templicense  + "`" + tempphone
+		
 	
-	
+Begin DVDList
 
 
 
